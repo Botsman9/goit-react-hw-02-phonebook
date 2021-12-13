@@ -26,23 +26,25 @@ class ContactForm extends Component {
 
     if (namesIsIn.includes(name) || numbersIsIn.includes(number)) {
       alert(`${name}${number} is already in contacts`);
+      return;
     }
 
     if (name === '' || number === '') {
       alert('Enter all data, please');
+      return;
     }
+
+    this.props.onSubmit(name, number);
   };
 
   handleSubmit = e => {
-    const { name, number } = this.state;
+    // const { name, number } = this.state;
 
     e.preventDefault();
     this.setState({ name: '', number: '' });
     if (this.contactChek()) {
       return;
     }
-
-    this.props.onSubmit(name, number);
   };
 
   render() {
